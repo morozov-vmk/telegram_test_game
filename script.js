@@ -1,111 +1,125 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
+const gameText = document.getElementById("gameText");
+
+const buttons = [
+  document.getElementById("choice1"),
+  document.getElementById("choice2"),
+  document.getElementById("choice3")
+];
 
 // Игрок
-let player = { x: 200, y: 500, size: 30, color: 'lime' };
-let speed = 10;
-let score = 0;
+let player = {
+  health: 5,
+  energy: 5,
+  morale: 5
+};
 
-// Звёзды
-let stars = [];
-for (let i = 0; i < 5; i++) {
-  stars.push({ x: Math.random() * (canvas.width-20), y: Math.random() * 400, size: 20, color: 'yellow' });
-}
+// Простая аномальная зона
+const events = [
+  {
+    text: "Вы вошли в туманную комнату. В воздухе пахнет чем-то странным.",
+    choices: [
+      { text: "Идти вперёд", effect: { energy: -1 }, next: 1 },
+      { text: "Остаться на месте", effect: { morale: -1 }, next: 2 },
+      { text: "Оглядеться", effect: {}, next: 3 }
+    ]
+  },
+  {
+    text: "Туман плотнее. Слышен шёпот...",
+    choices: [
+      { text: "Игнорировать шёпот", effect: { morale: -1 }, next: 3 },
+      { text: "Следовать за шёпотом", effect: { energy: -1, morale: 1 }, next: 4 },
+      { text: "Закрыть уши руками", effect: { energy: -1 }, next: 2 }
+    ]
+  },
+  {
+    text: "Вы нашли странный артефакт на полу.",
+    choices: [
+      { text: "Взять его", effect: { energy: -1, morale: 1 }, next: 4 },
+      { text: "Оставить", effect: {}, next: 4 },
+      { text: "Разбить", effect: { morale: -2 }, next: 4 }
+    ]
+  },
+  {
+    text: "Появилась фигура в тумане. Она что-то шепчет.",
+    choices: [
+      { text: "Слушать", effect: { morale: 1 }, next: 4 },
+      { text: "Убежать", effect: { energy: -1 }, next: 4 },
+      { text: "Напасть", effect: { health: -2 }, next: 4 }
+    ]
+  },
+  {
+    text: "Вы достигли конца уровня. Поздравляем!",
+    choices: [
+      { text: "Начать заново", effect: {}, next: 0 },
+      { text: "Закончить игру", effect: {}, next: null },
+      { text: "Повторить уровень", effect: {}, next: 0 }
+    ]
+  }
+];
 
-// Враги
-let enemies = [];
-for (let i = 0; i < 3; i++) {
-  enemies.push({ x: Math.random() * (canvas.width-30), y: Math.random() * 200, size: 30, color: 'red', speed: 2 + Math.random()*3 });
-}
+let currentEvent = 0;
 
-// Отрисовка объектов
+// Отрисовка фона и индикаторов
 function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#222";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Игрок
-  ctx.fillStyle = player.color;
-  ctx.fillRect(player.x, player.y, player.size, player.size);
-
-  // Звёзды
-  stars.forEach(s => {
-    ctx.fillStyle = s.color;
-    ctx.fillRect(s.x, s.y, s.size, s.size);
-  });
-
-  // Враги
-  enemies.forEach(e => {
-    ctx.fillStyle = e.color;
-    ctx.fillRect(e.x, e.y, e.size, e.size);
-  });
-
-  // Счёт
-  ctx.fillStyle = 'white';
-  ctx.font = '20px Arial';
-  ctx.fillText("Счёт: " + score, 10, 30);
+  ctx.fillStyle = "lime";
+  ctx.font = "16px Arial";
+  ctx.fillText(`Жизни: ${player.health}`, 10, 20);
+  ctx.fillText(`Энергия: ${player.energy}`, 10, 40);
+  ctx.fillText(`Мораль: ${player.morale}`, 10, 60);
 }
 
-// Обновление игры
-function update() {
-  // Двигаем врагов вниз
-  enemies.forEach(e => {
-    e.y += e.speed;
-    if (e.y > canvas.height) {
-      e.y = -e.size;
-      e.x = Math.random() * (canvas.width - e.size);
-    }
+// Отображение события и кнопок
+function showEvent() {
+  const e = events[currentEvent];
+  gameText.innerHTML = e.text;
 
-    // Проверка столкновения с игроком
-    if (player.x < e.x + e.size && player.x + player.size > e.x &&
-        player.y < e.y + e.size && player.y + player.size > e.y) {
-      alert("Игра окончена! Счёт: " + score);
-      score = 0;
-      player.x = 200; player.y = 500;
-    }
+  e.choices.forEach((c, i) => {
+    buttons[i].style.display = c ? "inline-block" : "none";
+    buttons[i].innerText = c ? c.text : "";
   });
+}
 
-  // Проверка сбора звёзд
-  stars.forEach(s => {
-    if (player.x < s.x + s.size && player.x + player.size > s.x &&
-        player.y < s.y + s.size && player.y + player.size > s.y) {
-      score++;
-      s.x = Math.random() * (canvas.width-20);
-      s.y = Math.random() * 400;
-    }
-  });
+// Применяем выбор игрока
+function choose(index) {
+  const choice = events[currentEvent].choices[index];
+  if (!choice) return;
+
+  // Применяем эффекты
+  for (let key in choice.effect) {
+    player[key] += choice.effect[key];
+    if (player[key] < 0) player[key] = 0;
+  }
 
   draw();
-  requestAnimationFrame(update);
+
+  // Проверка конца игры
+  if (player.health <= 0 || player.energy <= 0 || player.morale <= 0) {
+    alert("Вы не смогли выжить!");
+    player = { health: 5, energy: 5, morale: 5 };
+    currentEvent = 0;
+  } else {
+    currentEvent = choice.next !== null ? choice.next : 0;
+  }
+
+  showEvent();
 }
 
-update();
-
-// Управление клавишами (ПК)
-document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowUp") player.y -= speed;
-  if (e.key === "ArrowDown") player.y += speed;
-  if (e.key === "ArrowLeft") player.x -= speed;
-  if (e.key === "ArrowRight") player.x += speed;
+// Обработчики кнопок
+buttons.forEach((btn, i) => {
+  btn.addEventListener("click", () => choose(i));
 });
 
-// Сенсорное управление (мобильные кнопки)
-const controls = { up: false, down: false, left: false, right: false };
+// Управление клавишами (1,2,3)
+document.addEventListener("keydown", (e) => {
+  if (e.key === "1") choose(0);
+  if (e.key === "2") choose(1);
+  if (e.key === "3") choose(2);
+});
 
-document.getElementById("up").addEventListener("touchstart", () => controls.up = true);
-document.getElementById("up").addEventListener("touchend", () => controls.up = false);
-document.getElementById("down").addEventListener("touchstart", () => controls.down = true);
-document.getElementById("down").addEventListener("touchend", () => controls.down = false);
-document.getElementById("left").addEventListener("touchstart", () => controls.left = true);
-document.getElementById("left").addEventListener("touchend", () => controls.left = false);
-document.getElementById("right").addEventListener("touchstart", () => controls.right = true);
-document.getElementById("right").addEventListener("touchend", () => controls.right = false);
-
-// Движение игрока по кнопкам
-function movePlayer() {
-  if (controls.up) player.y -= speed;
-  if (controls.down) player.y += speed;
-  if (controls.left) player.x -= speed;
-  if (controls.right) player.x += speed;
-
-  requestAnimationFrame(movePlayer);
-}
-movePlayer();
+draw();
+showEvent();

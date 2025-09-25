@@ -49,3 +49,7 @@ h1 {
 .btn:active {
   background: #777;
 }
+
+#startScreen {
+  margin: 10px;
+}

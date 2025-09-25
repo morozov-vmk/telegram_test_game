@@ -2,34 +2,20 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Моя Telegram-игра</title>
+  <title>Аномальная игра</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <style>
-    body { margin: 0; background: #222; color: white; font-family: Arial, sans-serif; }
-    canvas { display: block; margin: 10px auto; background: #111; border: 2px solid #555; }
-    .controls {
-      display: flex; justify-content: center; gap: 10px;
-      margin-bottom: 10px;
-    }
-    .btn {
-      width: 50px; height: 50px; background: #555; color: white; font-size: 20px;
-      border-radius: 10px; display: flex; align-items: center; justify-content: center;
-      user-select: none;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <h1 style="text-align:center;">Мини-игра 🎮</h1>
-  <p style="text-align:center;">Собирай звёзды ⭐ и избегай врагов 🔴</p>
+  <h1>Аномальная зона 🎮</h1>
+  <canvas id="gameCanvas" width="400" height="500"></canvas>
 
-  <canvas id="gameCanvas" width="400" height="600"></canvas>
+  <div id="gameText"></div>
 
   <div class="controls">
-    <div class="btn" id="up">⬆️</div>
-    <div class="btn" id="left">⬅️</div>
-    <div class="btn" id="down">⬇️</div>
-    <div class="btn" id="right">➡️</div>
+    <button class="btn" id="choice1">Выбор 1</button>
+    <button class="btn" id="choice2">Выбор 2</button>
+    <button class="btn" id="choice3">Выбор 3</button>
   </div>
 
   <script src="script.js"></script>

@@ -11,6 +11,7 @@ const buttons = [
 ];
 
 let gameStarted = false;
+let neighborTimer = null;
 
 // Игрок
 let player = {
@@ -21,7 +22,6 @@ let player = {
 
 let hour = 19;
 let minute = 0;
-let neighborTimer = null;
 
 // События
 const events = [
@@ -79,7 +79,7 @@ const events = [
   }
 ];
 
-// Отрисовка игрока и состояния
+// Отрисовка состояния
 function draw(flash = false) {
   if (flash) {
     ctx.fillStyle = `rgb(${Math.random()*255},0,0)`;
@@ -130,7 +130,7 @@ function showEvent(e) {
   }
 }
 
-// Выбор события
+// Логика игры
 function nextTurn() {
   minute += 10;
   if (minute >= 60) {
@@ -158,6 +158,7 @@ function nextTurn() {
   }
 }
 
+// Сброс игры
 function resetGame() {
   player = { health: 3, sleep: 5, safety: 100 };
   hour = 19;

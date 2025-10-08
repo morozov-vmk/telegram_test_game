@@ -1,56 +1,72 @@
-body {
+body, html {
   margin: 0;
-  background: #111;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Arial', sans-serif;
   color: white;
-  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+#game {
+  position: relative;
+  width: 100%;
+  height: 100vh;
   text-align: center;
 }
 
-h1 {
-  margin-top: 10px;
-  font-size: 22px;
+#background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
 }
 
-#gameCanvas {
-  display: block;
-  margin: 10px auto;
-  background: #222;
-  border: 2px solid #555;
+#stats {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 10px;
 }
 
-#gameText {
-  margin: 10px;
-  padding: 10px;
-  background: #222;
-  border: 2px solid #555;
-  min-height: 120px;
-  font-size: 16px;
-  text-align: left;
+#story {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 15px;
+  border-radius: 15px;
+  z-index: 2;
+  font-size: 18px;
 }
 
-.controls {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
+#choices {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
 }
 
-.btn {
-  padding: 10px 15px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: none;
-  background: #555;
+.choice {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid white;
   color: white;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: 0.2s;
 }
 
-.btn:active {
-  background: #777;
+.choice:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
-
-#startScreen {
-  margin: 10px;
-}
-

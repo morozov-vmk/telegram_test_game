@@ -93,34 +93,47 @@ function loadScene(name) {
   const scene = scenes[name];
   if (!scene) return;
 
-  currentScene = scene;
+  const game = document.getElementById("game");
 
-  // фон
-  document.getElementById("background").style.backgroundImage = `url(${scene.background})`;
+  // 🔹 Этап 1: затемнение старой сцены
+  game.classList.remove("fade-in");
+  game.classList.add("fade-out");
 
-  // текст
-  document.getElementById("story").textContent = scene.text;
+  // ⏳ Ждём 700 мс (как transition в CSS), потом меняем контент
+  setTimeout(() => {
+    currentScene = scene;
 
-  // звук
-  const audio = document.getElementById("bgm");
-  if (scene.sound) {
-    audio.src = scene.sound;
-    audio.play().catch(() => {});
-  }
+    // фон
+    document.getElementById("background").style.backgroundImage = `url(${scene.background})`;
 
-  // действия при входе
-  if (scene.onEnter) scene.onEnter();
+    // текст
+    document.getElementById("story").textContent = scene.text;
 
-  // кнопки выбора
-  const choicesDiv = document.getElementById("choices");
-  choicesDiv.innerHTML = "";
-  scene.choices.forEach(choice => {
-    const btn = document.createElement("div");
-    btn.className = "choice";
-    btn.textContent = choice.text;
-    btn.onclick = () => loadScene(choice.next);
-    choicesDiv.appendChild(btn);
-  });
+    // звук
+    const audio = document.getElementById("bgm");
+    if (scene.sound) {
+      audio.src = scene.sound;
+      audio.play().catch(() => {});
+    }
+
+    // onEnter (доп. эффект при входе)
+    if (scene.onEnter) scene.onEnter();
+
+    // кнопки выбора
+    const choicesDiv = document.getElementById("choices");
+    choicesDiv.innerHTML = "";
+    scene.choices.forEach(choice => {
+      const btn = document.createElement("div");
+      btn.className = "choice";
+      btn.textContent = choice.text;
+      btn.onclick = () => loadScene(choice.next);
+      choicesDiv.appendChild(btn);
+    });
+
+    // 🔹 Этап 2: проявление новой сцены
+    game.classList.remove("fade-out");
+    game.classList.add("fade-in");
+  }, 700);
 }
 
 // Запускаем игру

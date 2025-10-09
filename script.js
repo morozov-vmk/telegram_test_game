@@ -107,7 +107,7 @@ function loadScene(name) {
     document.getElementById("background").style.backgroundImage = `url(${scene.background})`;
 
     // текст
-    typeText(document.getElementById("story"), scene.text);
+    document.getElementById("story").textContent = scene.text;
 
     document.addEventListener('mousemove', e => {
       const bg = document.getElementById('background');

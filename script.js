@@ -37,13 +37,50 @@ const scenes = {
   },
   end: {
     background: "images/sunset.png",
-    text: "Староста рассказывает о древней тайне... Конец демо.",
+    text: "Староста рассказывает о случившихся в деревне аномалиях, предлагает пройти в дом.",
+    choices: [
+      { text: "Отказаться. Уйти из деревни", next: "start" },
+      { text: "Пройти в дом", next: "home" }
+    ]
+  },
+  home: {
+    background: "images/home.png",
+    text: "Вы вошли в дом. К Вам спиной стоит пожилой мужчина и тяжело дышит. Слева приоткрыта дверь в комнату",
+    choices: [
+      { text: "Спросить что-то у мужчины", next: "fatal" },
+      { text: "Пройти в тёмную комнату", next: "room" }
+    ]
+  },
+  fatal: {
+    background: "images/fatal.png",
+    text: "Вы потревожили перекожника, ваши часы сочтены, грибок вселяется в ваше тело",
     choices: [
       { text: "Начать сначала", next: "start" }
     ]
+  },
+  fatal_2: {
+    background: "images/fatal_2.png",
+    text: "Еда была заражена, ваши часы сочтены, грибок вселяется в ваше тело",
+    choices: [
+      { text: "Начать сначала", next: "start" }
+    ]
+  },
+  happy_end: {
+    background: "images/happy_end.png",
+    text: "Пока что вам удалось избежать заражения, продолжение следует...",
+    choices: [
+      { text: "Начать сначала", next: "start" }
+    ]
+  },
+  room: {
+    background: "images/room.png",
+    text: "Вы голодны. На столе лежат фрукты, пахнут грибами, из стены течёт смола с запахом рыбы. Вам нужно утолить голод",
+    choices: [
+      { text: "Съесть фрукты", next: "fatal_2" },
+      { text: "Слизать смолу со стены", next: "happy_end" }
+    ]
   }
 };
-
 let currentScene = null;
 let health = 100;
 

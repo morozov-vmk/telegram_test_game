@@ -107,7 +107,14 @@ function loadScene(name) {
     document.getElementById("background").style.backgroundImage = `url(${scene.background})`;
 
     // текст
-    document.getElementById("story").textContent = scene.text;
+    typeText(document.getElementById("story"), scene.text);
+
+    document.addEventListener('mousemove', e => {
+      const bg = document.getElementById('background');
+      const moveX = (e.clientX / window.innerWidth - 0.5) * 10;
+      const moveY = (e.clientY / window.innerHeight - 0.5) * 10;
+      bg.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
+    });
 
     // звук
     const audio = document.getElementById("bgm");
@@ -134,6 +141,16 @@ function loadScene(name) {
     game.classList.remove("fade-out");
     game.classList.add("fade-in");
   }, 700);
+}
+
+function typeText(element, text, speed = 30) {
+  element.textContent = "";
+  let i = 0;
+  const timer = setInterval(() => {
+    element.textContent += text[i];
+    i++;
+    if (i >= text.length) clearInterval(timer);
+  }, speed);
 }
 
 // Запускаем игру

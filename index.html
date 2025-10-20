@@ -1,36 +1,29 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <title>Бабушкина квартира — демо</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram Novel Game</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="game">
-    <header id="hud">
-      <div id="time-wrap">🕒 <span id="time">19:00</span> (Вс)</div>
-      <div id="stats">
-        🍞 <span id="hunger">100</span>
-        💤 <span id="sleep">100</span>
-        🧠 <span id="sanity">100</span>
-        ❤️ <span id="health">100</span>
-      </div>
-    </header>
+    <!-- Фон -->
+    <div id="background"></div>
 
-    <main id="scene-area">
-      <h1 id="scene-name">...</h1>
-      <p id="scene-text">...</p>
+    <!-- Панель характеристик -->
+    <div id="stats">
+      ❤️ Жизни: <span id="health">100</span>
+    </div>
 
-      <div id="choices" aria-label="choices"></div>
-    </main>
+    <!-- Текст события -->
+    <div id="story"></div>
 
-    <footer id="log"></footer>
+    <!-- Кнопки действий -->
+    <div id="choices"></div>
   </div>
 
   <audio id="bgm" loop></audio>
-  <audio id="sfx"></audio>
-
   <script src="script.js"></script>
 </body>
 </html>

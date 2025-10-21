@@ -5,8 +5,8 @@ let window_knock = 0;
 const scenes = {
 
   start: {
-    background: "images/start.png",
-    sound: "sounds/start.mp3",
+    background: "images/village.png",
+    sound: "sounds/sound.mp3",
     text: "Поздравляю! Тебе досталась бабушкина двушка на окраине города. Бабушка была очень заботлива, но куда-то пропала, и теперь ты новый владелец её жилья. В квартире мрачновато, но это же не помеха для тебя, правда? На ключах ты видишь брелок в виде матрёшки. Открутив голову, ты находишь небольшой листочек со списком правил:",
     choices: [
       {text: 'start', next: 'hallway'}

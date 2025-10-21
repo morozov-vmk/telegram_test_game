@@ -561,6 +561,7 @@ function maybeTriggerNeighborKnock() {
   }
 }
 
+
 // Запускаем игру
 window.onload = () => {
   updateClock();

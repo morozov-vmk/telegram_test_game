@@ -3,7 +3,7 @@ let neighbors_knock = 0;
 let window_knock = 0;
 
 let gameState = {
-  hour: 90,
+  hour: 19,
   minute: 0
 };
 

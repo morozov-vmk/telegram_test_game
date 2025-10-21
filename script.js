@@ -1,10 +1,16 @@
 let is_def = 1;
 let neighbors_knock = 0;
 let window_knock = 0;
+let was_neighbor = 0
+let was_window_knock = 0
+
+
+let currentScene = null;
+let health = 100;
 
 let gameState = {
-  hour: 19,
-  minute: 0
+  hour: 23,
+  minute: 10
 };
 
 const scenes = {
@@ -82,7 +88,7 @@ const scenes = {
     sound: "sounds/living_room_neighbors_knock.mp3",
     text: "Ты в гостиной. Из прихожей слышен стук соседа.",
     choices: [
-      
+      {text: 'Выйти на лестничную клетку', next: 'stairwell'}
     ]
   },
 
@@ -453,8 +459,7 @@ const scenes = {
   
   
 };
-let currentScene = null;
-let health = 100;
+
 
 function changeHealth(amount) {
   health = Math.min(100, Math.max(0, health + amount));
@@ -515,15 +520,6 @@ function loadScene(name) {
   }, 700);
 }
 
-function typeText(element, text, speed = 30) {
-  element.textContent = "";
-  let i = 0;
-  const timer = setInterval(() => {
-    element.textContent += text[i];
-    i++;
-    if (i >= text.length) clearInterval(timer);
-  }, speed);
-}
 
 function addMinutes(mins) {
   gameState.minute += mins;
@@ -534,6 +530,7 @@ function addMinutes(mins) {
   if (gameState.hour >= 24) gameState.hour -= 24;
   updateClock();
   setTimeVisual();
+  maybeTriggerNeighborKnock();
 }
 
 function startClock() {
@@ -546,6 +543,22 @@ function updateClock() {
   const h = String(gameState.hour).padStart(2, "0");
   const m = String(gameState.minute).padStart(2, "0");
   document.getElementById("time").textContent = `${h}:${m}`;
+}
+
+function maybeTriggerNeighborKnock() {
+  if (was_neighbor === 0) {
+    const time = gameState.hour * 60 + gameState.minute;
+
+    // Проверяем, что текущее время между 23:30 и 23:59
+    if (time >= 23 * 60 + 30 && time <= 23 * 60 + 59) {
+      // С вероятностью 1 к 100 на каждую "минуту" (секунду)
+      if (Math.random() < 0.4 || time > 23 * 60 + 48) {
+        gameState.neighbors_knock = 1;
+        gameState.was_neighbor = 1;
+        loadScene("living_room_neighbors_knock");
+      }
+    }
+  }
 }
 
 // Запускаем игру

@@ -10,7 +10,7 @@ let health = 100;
 
 let gameState = {
   hour: 23,
-  minute: 10
+  minute: 9
 };
 
 const scenes = {
@@ -553,8 +553,8 @@ function maybeTriggerNeighborKnock() {
     if (time >= 23 * 60 + 30 && time <= 23 * 60 + 59) {
       // С вероятностью 1 к 100 на каждую "минуту" (секунду)
       if (Math.random() < 0.4 || time > 23 * 60 + 48) {
-        gameState.neighbors_knock = 1;
-        gameState.was_neighbor = 1;
+        neighbors_knock = 1;
+        was_neighbor = 1;
         loadScene("living_room_neighbors_knock");
       }
     }

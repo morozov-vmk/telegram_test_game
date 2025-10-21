@@ -2,6 +2,11 @@ let is_def = 1;
 let neighbors_knock = 0;
 let window_knock = 0;
 
+let gameState = {
+  hour: 90,
+  minute: 0
+};
+
 const scenes = {
 
   start: {
@@ -520,7 +525,32 @@ function typeText(element, text, speed = 30) {
   }, speed);
 }
 
+function addMinutes(mins) {
+  gameState.minute += mins;
+  while (gameState.minute >= 60) {
+    gameState.minute -= 60;
+    gameState.hour++;
+  }
+  if (gameState.hour >= 24) gameState.hour -= 24;
+  updateClock();
+  setTimeVisual();
+}
+
+function startClock() {
+  setInterval(() => {
+    addMinutes(1); // 1 сек = 1 минута
+  }, 1000);
+}
+
+function updateClock() {
+  const h = String(gameState.hour).padStart(2, "0");
+  const m = String(gameState.minute).padStart(2, "0");
+  document.getElementById("time").textContent = `${h}:${m}`;
+}
+
 // Запускаем игру
 window.onload = () => {
+  updateClock();
+  startClock();
   loadScene("start");
 };

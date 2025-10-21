@@ -62,8 +62,8 @@ const scenes = {
   },
 
   living_room: {
-    background: "images/living_room.png",
-    sound: "sounds/living_room.mp3",
+    background: "images/village.png",
+    sound: "sounds/sound.mp3",
     text: "Ты в гостиной. Всё тихо.",
     choices: [
       {text: 'Проверить шкаф-стенку', next: 'cupboard_empty'},
@@ -118,8 +118,8 @@ const scenes = {
   },
 
   tv_off: {
-    background: "images/tv_off.png",
-    sound: "sounds/tv_off.mp3",
+    background: "images/village.png",
+    sound: "sounds/sound.mp3",
     text: "Телевизор выключен.",
     choices: [
       {text: 'Включить на среднюю громкость', next: 'tv_medium'},
@@ -138,8 +138,8 @@ const scenes = {
   },
 
   tv_medium: {
-    background: "images/tv_medium.png",
-    sound: "sounds/tv_medium.mp3",
+    background: "images/village.png",
+    sound: "sounds/sound.mp3",
     text: "Телевизор включён на среднюю громкость.",
     choices: [
       {text: 'Выключить', next: 'tv_off'},
@@ -147,8 +147,8 @@ const scenes = {
   },
 
   tv_maxi: {
-    background: "images/tv_maxi.png",
-    sound: "sounds/tv_maxi.mp3",
+    background: "images/village.png",
+    sound: "sounds/sound.mp3",
     text: "Телевизор включён на максимальную громкость.",
     choices: [
       {text: 'Выключить', next: 'tv_off'},
@@ -156,8 +156,8 @@ const scenes = {
   },
 
   hallway: {
-    background: "images/hallway.png",
-    sound: "sounds/hallway.mp3",
+    background: "images/village.png",
+    sound: "sounds/sound.mp3",
     text: "Ты в коридоре. Всё тихо.",
     choices: [
       {text: 'Пойти в комнату', next: 'room'},
@@ -187,8 +187,8 @@ const scenes = {
   },
 
   room: {
-    background: "images/room.png",
-    sound: "sounds/room.mp3",
+    background: "images/village.png",
+    sound: "sounds/sound.mp3",
     text: "Ты в комнате. Всё тихо.",
     choices: [
       {text: 'Выйти в коридор', next: 'hallway'},
@@ -242,8 +242,8 @@ const scenes = {
   },
 
   fridge: {
-    background: "images/fridge.png",
-    sound: "sounds/fridge.mp3",
+    background: "images/village.png",
+    sound: "sounds/sound.mp3",
     text: "В холодильнике есть еда.",
     choices: [
       {text: 'Закрыть', next: 'kitchen'},
@@ -251,8 +251,8 @@ const scenes = {
   },
 
   kitchen: {
-    background: "images/kitchen.png",
-    sound: "sounds/kitchen.mp3",
+    background: "images/village.png",
+    sound: "sounds/sound.mp3",
     text: "Ты на кухне. Всё тихо.",
     choices: [
       {text: 'Поискать что-то поесть в холодильнике', next: 'fridge'},
@@ -279,8 +279,8 @@ const scenes = {
   },
 
   vestibule: {
-    background: "images/vestibule.png",
-    sound: "sounds/vestibule.mp3",
+    background: "images/village.png",
+    sound: "sounds/sound.mp3",
     text: "Ты в прихожей. Всё тихо.",
     choices: [
       {text: 'Выйти в коридор', next: 'hallway'},
@@ -317,8 +317,8 @@ const scenes = {
   },
 
   toilet_on: {
-    background: "images/toilet_on.png",
-    sound: "sounds/toilet_on.mp3",
+    background: "images/village.png",
+    sound: "sounds/sound.mp3",
     text: "Ты в туалете. Всё тихо. Свет включен.",
     choices: [
       
@@ -362,8 +362,8 @@ const scenes = {
   },
 
   peephole_window_knock: {
-    background: "images/peephole_window_knock.png",
-    sound: "sounds/peephole_window_knock.mp3",
+    background: "images/village.png",
+    sound: "sounds/sound.mp3",
     text: "Ты смотришь в глазок. Никого не видно. Слышен отчётливый стук в окно.",
     choices: [
       
@@ -380,8 +380,8 @@ const scenes = {
   },
 
   stairwell: {
-    background: "images/stairwell.png",
-    sound: "sounds/stairwell.mp3",
+    background: "images/village.png",
+    sound: "sounds/sound.mp3",
     text: "Ты на лестничной клетке.",
     choices: [
       {text: 'Войти в квартиру', next: 'vestibule'},
@@ -390,8 +390,8 @@ const scenes = {
   },
 
   sleep: {
-    background: "images/sleep.png",
-    sound: "sounds/sleep.mp3",
+    background: "images/village.png",
+    sound: "sounds/sound.mp3",
     text: "Ты cпишь.",
     choices: [
       {text: 'Проснуться', next: 'room'}
@@ -435,8 +435,8 @@ const scenes = {
   },
 
   happy_end: {
-    background: "images/happy_end.png",
-    sound: "sounds/happy_end.mp3",
+    background: "images/village.png",
+    sound: "sounds/sound.mp3",
     text: "Поздравляю! Ты смог продержаться сутки в бабушкиной двушке. Подписывайтесь на канал, 100 подписчиков - и мы выпустим локации 'лифт', 'подъезд', 'смена в макдоналдсе'",
     choices: [
       {text: 'Начать заново', next: 'start'}

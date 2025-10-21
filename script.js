@@ -164,7 +164,7 @@ const scenes = {
       {text: 'Пойти на кухню', next: 'kitchen'},
       {text: 'Пойти в гостиную', next: 'living_room'},
       {text: 'Пойти в прихожую', next: 'vestibule'},
-      {text: 'Пойти в туалет', next: 'toilet'},
+      {text: 'Пойти в туалет', next: 'toilet_off'},
     ]
   },
 

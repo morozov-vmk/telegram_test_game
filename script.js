@@ -284,7 +284,7 @@ const scenes = {
     text: "Ты в прихожей. Всё тихо.",
     choices: [
       {text: 'Выйти в коридор', next: 'hallway'},
-      {text: 'Посмотреть в глазок', next: 'peephole_empty'}
+      {text: 'Посмотреть в глазок', next: 'peephole_empty'},
       {text: 'Выйти на лестничную клетку', next: 'stairwell'}
     ]
   },
@@ -384,7 +384,7 @@ const scenes = {
     sound: "sounds/stairwell.mp3",
     text: "Ты на лестничной клетке.",
     choices: [
-      {text: 'Войти в квартиру', next: 'vestibule'}
+      {text: 'Войти в квартиру', next: 'vestibule'},
       {text: 'Завершить', next: 'happy_end'}
     ]
   },

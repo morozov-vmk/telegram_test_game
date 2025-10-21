@@ -1,8 +1,6 @@
 let is_def = 1;
 let neighbors_knock = 0;
 let window_knock = 0;
-let was_neighbor = 0
-let was_window_knock = 0
 
 
 let currentScene = null;
@@ -10,7 +8,9 @@ let health = 100;
 
 let gameState = {
   hour: 23,
-  minute: 9
+  minute: 15,
+  neighbors_knock: 0,
+  neighborEventMinute: null, // время, когда соседи постучат
 };
 
 const scenes = {
@@ -84,8 +84,8 @@ const scenes = {
   },
 
   living_room_neighbors_knock: {
-    background: "images/living_room_neighbors_knock.png",
-    sound: "sounds/living_room_neighbors_knock.mp3",
+    background: "images/village.png",
+    sound: "sounds/sound.mp3",
     text: "Ты в гостиной. Из прихожей слышен стук соседа.",
     choices: [
       {text: 'Выйти на лестничную клетку', next: 'stairwell'}
@@ -546,17 +546,17 @@ function updateClock() {
 }
 
 function maybeTriggerNeighborKnock() {
-  if (was_neighbor === 0) {
+  if (gameState.was_neighbor === 0) {
     const time = gameState.hour * 60 + gameState.minute;
 
-    // Проверяем, что текущее время между 23:30 и 23:59
-    if (time >= 23 * 60 + 30 && time <= 23 * 60 + 59) {
-      // С вероятностью 1 к 100 на каждую "минуту" (секунду)
-      if (Math.random() < 0.4 || time > 23 * 60 + 48) {
-        neighbors_knock = 1;
-        was_neighbor = 1;
-        loadScene("living_room_neighbors_knock");
-      }
+    if (gameState.neighborEventMinute === null) {
+      gameState.neighborEventMinute = 23 * 60 + (30 + Math.floor(Math.random() * 30));
+    }
+
+    if (time >= gameState.neighborEventMinute) {
+      gameState.neighbors_knock = 1;
+      gameState.was_neighbor = 1;
+      loadScene("living_room_neighbors_knock");
     }
   }
 }

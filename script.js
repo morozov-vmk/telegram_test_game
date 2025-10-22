@@ -161,7 +161,7 @@ const scenes = {
 
 
   tv_off: {
-    background: "images/tv_off.png",
+    background: "images/tv_off.jpg",
     sound: "sounds/def.mp3",
     text: "Телевизор выключен.",
     choices: [
@@ -566,7 +566,7 @@ const scenes = {
   },
 
   peephole_neighbors_knock: {
-    background: "images/peephole_neighbors_knock.png",
+    background: "images/peephole_neighbors_knock.jpg",
     sound: "sounds/neighbors_knock.mp3",
     text: "Ты смотришь в глазок. Сосед просит соли.",
     choices: [

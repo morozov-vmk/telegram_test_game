@@ -1,6 +1,7 @@
 let game_over = 0;
 let future_axe = 0;
 let scare = 0;
+let emp_fr = 0;
 let clockInterval = null;
 let examinate = 0;
 let type_capboard = 0;
@@ -388,14 +389,7 @@ const scenes = {
     ]
   },
 
-  fridge_empty_neighbors_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
-    text: "Холодильник пуст. Записка: 'Жаль, что не спрятался от меня в туалете, теперь ты останешься голодным'. Из прихожей слышен стук соседа.",
-    choices: [
-      {text: 'Закрыть', next: 'kitchen_neighbors_knock'},
-    ]
-  },
+  
 
   fridge_neighbors_knock: {
     background: "images/village.png",
@@ -406,14 +400,6 @@ const scenes = {
     ]
   },
 
-  fridge_empty_window_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
-    text: "Холодильник пуст. Записка: 'Жаль, что не спрятался от меня в туалете, теперь ты останешься голодным'. Слышен отчётливый стук в окно.",
-    choices: [
-      {text: 'Закрыть', next: 'kitchen_window_knock'},
-    ]
-  },
 
   fridge_window_knock: {
     background: "images/village.png",
@@ -429,7 +415,15 @@ const scenes = {
     sound: "sounds/sound.mp3",
     text: "Ты на кухне. Всё тихо.",
     choices: [
-      {text: 'Поискать что-то поесть в холодильнике', next: 'fridge'},
+      {
+        text: 'Поискать что-то поесть в холодильнике',
+        next: function() {
+          switch(emp_fr) {
+            case 1: return 'fridge_empty';
+            default: return 'fridge';
+          }
+        }
+      },
       {text: 'Выйти в коридор', next: 'hallway'}
     ]
   },
@@ -695,6 +689,7 @@ function loadScene(name) {
     examinate = 0;
     type_capboard = 0;
     in_flat = 1;
+    emp_fr = 0;
     start_scare_scene = null;
     old_scene = null;
 
@@ -802,6 +797,10 @@ function maybeTriggerNeighborKnock() {
       loadScene('room');
       future_axe = 1;
     }
+    if (currentScenename === 'room_from_sleep_scare') {
+      loadScene('room');
+      future_axe = 1;
+    }
     else if (currentScenename === 'peephole_neighbors_knock') {
       loadScene(currentScenename.slice(0, -16));
     }
@@ -840,14 +839,14 @@ function maybeTriggerWindowKnock() {
   if (game_over == 0 && gameState.window_knock === 1 && gameState.hour * 60 + gameState.minute === 1 * 60 + 40) {
     if (currentScenename === 'room_from_sleep_window_knock') {
       loadScene('room');
-      scare = 1;
+      emp_fr = 1;
     }
     else if (currentScenename === 'toilet_off_window_knock') {
       loadScene(currentScenename.slice(0, -13));
     }
     else {
       loadScene(currentScenename.slice(0, -13));
-      scare = 1;
+      emp_fr = 1;
     }
   }
   if (gameState.was_window === 0) {
@@ -889,15 +888,19 @@ function maybeTriggerCupboard() {
     return;
   }
   if (gameState.hour * 60 + gameState.minute === 8 * 60 + 7 && examinate === 0) {
+    console.log("CHECK", gameState.hour, gameState.minute, "examinate", examinate);
     loadScene('game_over_roof');
+    game_over = 1;
     return;
   }
-  if (type_capboard > 0 && gameState.hour * 60 + gameState.minute <= 8 * 60 + 40 && in_flat) {
+  if (type_capboard > 0 && gameState.hour * 60 + gameState.minute >= 8 * 60 + 7 && gameState.hour * 60 + gameState.minute <= 8 * 60 + 40 && in_flat) {
     loadScene('game_over_roof');
+    game_over = 1;
     return;
   }
-  if (type_capboard > 1 && gameState.hour * 60 + gameState.minute < 10 * 60 + 10 && in_flat) {
+  if (type_capboard > 1 && gameState.hour * 60 + gameState.minute >= 8 * 60 + 7 && gameState.hour * 60 + gameState.minute < 10 * 60 + 10 && in_flat) {
     loadScene('game_over_roof');
+    game_over = 1;
     return;
   }
   if (type_capboard === 1 && gameState.hour * 60 + gameState.minute > 8 * 60 + 40) {
@@ -995,7 +998,6 @@ function maybeTriggerPantry() {
 }
 
 
-// Запускаем игру
 window.onload = () => {
   updateClock();
   startClock();

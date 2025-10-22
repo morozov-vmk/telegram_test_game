@@ -31,8 +31,8 @@ let gameState = {
 const scenes = {
 
   start: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/start.png",
+    sound: "sounds/def.mp3",
     text: "Поздравляю! Тебе досталась бабушкина двушка на окраине города. Бабушка была очень заботлива, но куда-то пропала, и теперь ты новый владелец её жилья. В квартире мрачновато, но это же не помеха для тебя, правда? На ключах ты видишь брелок в виде матрёшки. Открутив голову, ты находишь небольшой листочек со списком правил:",
     text: [
       "Поздравляю! Тебе досталась бабушкина двушка на окраине города. Бабушка была очень заботлива, но куда-то пропала, и теперь ты новый владелец её жилья. В квартире мрачновато, но это же не помеха для тебя, правда? На ключах ты видишь брелок в виде матрёшки. Открутив голову, ты находишь небольшой листочек со списком правил:",
@@ -47,8 +47,8 @@ const scenes = {
   },
 
   cupboard_empty: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/cupboard_empty.png",
+    sound: "sounds/def.mp3",
     text: "Шкаф-стенка пуста",
     choices: [
       {text: 'Осмотреть гостиную', next: 'living_room'},
@@ -59,8 +59,8 @@ const scenes = {
   },
 
   cupboard_empty_neighbors_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/cupboard_empty.png",
+    sound: "sounds/neighbors_knock.mp3",
     text: "Шкаф-стенка пуста. Из прихожей слышен стук соседа.",
     choices: [
       {text: 'Осмотреть гостиную', next: 'living_room_neighbors_knock'},
@@ -71,8 +71,8 @@ const scenes = {
   },
 
   cupboard_empty_window_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/cupboard_empty.png",
+    sound: "sounds/window_knock.mp3",
     text: "Шкаф-стенка пуста. Слышен отчётливый стук в окно.",
     choices: [
       {text: 'Осмотреть гостиную', next: 'living_room_window_knock'},
@@ -83,8 +83,8 @@ const scenes = {
   },
 
   cupboard_fish: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/cupboard_fish.png",
+    sound: "sounds/def.mp3",
     text: "В шкаф-стенке сервиз с рыбами",
     choices: [
       {text: 'Осмотреть гостиную', next: 'living_room'},
@@ -95,8 +95,8 @@ const scenes = {
   },
 
   cupboard_crystal: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/cupboard_crystal.png",
+    sound: "sounds/def.mp3",
     text: "В шкаф-стенке праздничный хрусталь",
     choices: [
       {text: 'Осмотреть гостиную', next: 'living_room'},
@@ -107,8 +107,8 @@ const scenes = {
   },
 
   living_room: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/living_room.png",
+    sound: "sounds/def.mp3",
     text: "Ты в гостиной. Всё тихо.",
     choices: [
       {text: 'Посмотреть телевизор', next: 'tv_off'},
@@ -127,8 +127,8 @@ const scenes = {
   },
 
   living_room_neighbors_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/living_room.png",
+    sound: "sounds/neighbors_knock.mp3",
     text: "Ты в гостиной. Из прихожей слышен стук соседа.",
     choices: [
       {text: 'Проверить шкаф-стенку', next: 'cupboard_empty_neighbors_knock'},
@@ -138,8 +138,8 @@ const scenes = {
   },
 
   living_room_window_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/living_room.png",
+    sound: "sounds/window_knock.mp3",
     text: "Ты в гостиной. Слышен отчётливый стук в окно.",
     choices: [
       {text: 'Проверить шкаф-стенку', next: 'cupboard_empty_window_knock'},
@@ -149,8 +149,8 @@ const scenes = {
   },
 
   living_room_pantry_door: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/living_room.png",
+    sound: "sounds/pantry_door.mp3",
     text: "Ты в гостиной. Слышен скрип открывающейся кладовки.",
     choices: [
       {text: 'Проверить шкаф-стенку', next: 'cupboard_empty'},
@@ -161,8 +161,8 @@ const scenes = {
 
 
   tv_off: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/tv_off.png",
+    sound: "sounds/def.mp3",
     text: "Телевизор выключен.",
     choices: [
       {text: 'Включить на среднюю громкость', next: 'tv_medium'},
@@ -172,8 +172,8 @@ const scenes = {
   },
 
   tv_off_neighbors_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/tv_off.png",
+    sound: "sounds/neighbors_knock.mp3",
     text: "Телевизор выключен. Из прихожей слышен стук соседа.",
     choices: [
       {text: 'Включить на среднюю громкость', next: 'tv_medium_neighbors_knock'},
@@ -183,8 +183,8 @@ const scenes = {
   },
 
   tv_off_window_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/tv_off.png",
+    sound: "sounds/window_knock.mp3",
     text: "Телевизор выключен. Слышен отчётливый стук в окно.",
     choices: [
       {text: 'Включить на среднюю громкость', next: 'tv_medium_window_knock'},
@@ -194,8 +194,8 @@ const scenes = {
   },
 
   tv_off_pantry_door: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/tv_off.png",
+    sound: "sounds/pantry_door.mp3",
     text: "Телевизор выключен. Слышен скрип открывающейся кладовки.",
     choices: [
       {text: 'Включить на среднюю громкость', next: 'tv_medium_pantry_door'},
@@ -205,8 +205,8 @@ const scenes = {
   },
 
   tv_medium_pantry_door: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/tv_on.png",
+    sound: "sounds/tv.mp3",
     text: "Телевизор включён на среднюю громкость. Слышен скрип открывающейся кладовки.",
     choices: [
       {text: 'Выключить', next: 'tv_off_pantry_door'},
@@ -214,8 +214,8 @@ const scenes = {
   },
 
   tv_maxi_pantry_door: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/tv_on.png",
+    sound: "sounds/tv.mp3",
     text: "Телевизор включён на максимальную громкость. Слышен скрип открывающейся кладовки.",
     choices: [
       {text: 'Выключить', next: 'tv_off_pantry_door'},
@@ -223,8 +223,8 @@ const scenes = {
   },
 
   tv_medium: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/tv_on.png",
+    sound: "sounds/tv.mp3",
     text: "Телевизор включён на среднюю громкость.",
     choices: [
       {text: 'Выключить', next: 'tv_off'},
@@ -232,8 +232,8 @@ const scenes = {
   },
 
   tv_medium_neighbors_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/tv_on.png",
+    sound: "sounds/tv.mp3",
     text: "Телевизор включён на среднюю громкость. Из прихожей слышен стук соседа.",
     choices: [
       {text: 'Выключить', next: 'tv_off_neighbors_knock'},
@@ -241,8 +241,8 @@ const scenes = {
   },
 
   tv_medium_window_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/tv_on.png",
+    sound: "sounds/tv.mp3",
     text: "Телевизор включён на среднюю громкость. Слышен отчётливый стук в окно.",
     choices: [
       {text: 'Выключить', next: 'tv_off_window_knock'},
@@ -250,8 +250,8 @@ const scenes = {
   },
 
   tv_maxi: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/tv_on.png",
+    sound: "sounds/tv.mp3",
     text: "Телевизор включён на максимальную громкость.",
     choices: [
       {text: 'Выключить', next: 'tv_off'},
@@ -259,8 +259,8 @@ const scenes = {
   },
 
   tv_maxi_neighbors_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/tv_on.png",
+    sound: "sounds/tv.mp3",
     text: "Телевизор включён на максимальную громкость. Из прихожей слышен стук соседа.",
     choices: [
       {text: 'Выключить', next: 'tv_off_neighbors_knock'},
@@ -268,8 +268,8 @@ const scenes = {
   },
 
   tv_maxi_window_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/tv_on.png",
+    sound: "sounds/tv.mp3",
     text: "Телевизор включён на максимальную громкость. Слышен отчётливый стук в окно.",
     choices: [
       {text: 'Выключить', next: 'tv_off_window_knock'},
@@ -277,47 +277,50 @@ const scenes = {
   },
 
   hallway: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/hallway.png",
+    sound: "sounds/def.mp3",
     text: "Ты в коридоре. Всё тихо.",
     choices: [
       {text: 'Пойти в комнату', next: 'room'},
       {text: 'Пойти на кухню', next: 'kitchen'},
       {text: 'Пойти в гостиную', next: 'living_room'},
       {text: 'Пойти в прихожую', next: 'vestibule'},
-      {text: 'Пойти в туалет', next: 'toilet_off'},
+      {text: 'Пойти в туалет, не включая свет', next: 'toilet_off'},
+      {text: 'Пойти в туалет, включить свет', next: 'toilet_on'},
     ]
   },
 
   hallway_neighbors_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/hallway.png",
+    sound: "sounds/neighbors_knock.mp3",
     text: "Ты в коридоре. Из прихожей слышен стук соседа.",
     choices: [
       {text: 'Пойти в комнату', next: 'room_neighbors_knock'},
       {text: 'Пойти на кухню', next: 'kitchen_neighbors_knock'},
       {text: 'Пойти в гостиную', next: 'living_room_neighbors_knock'},
       {text: 'Пойти в прихожую', next: 'vestibule_neighbors_knock'},
-      {text: 'Пойти в туалет', next: 'toilet_off_neighbors_knock'},
+      {text: 'Пойти в туалет, не включая свет', next: 'toilet_off_neighbors_knock'},
+      {text: 'Пойти в туалет, включить свет', next: 'toilet_on_neighbors_knock'},
     ]
   },
 
   hallway_window_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/hallway.png",
+    sound: "sounds/window_knock.mp3",
     text: "Ты в коридоре. Слышен отчётливый стук в окно.",
     choices: [
       {text: 'Пойти в комнату', next: 'room_window_knock'},
       {text: 'Пойти на кухню', next: 'kitchen_window_knock'},
       {text: 'Пойти в гостиную', next: 'living_room_window_knock'},
       {text: 'Пойти в прихожую', next: 'vestibule_window_knock'},
-      {text: 'Пойти в туалет', next: 'toilet_off_window_knock'},
+      {text: 'Пойти в туалет, не включая свет', next: 'toilet_off_window_knock'},
+      {text: 'Пойти в туалет, включить свет', next: 'toilet_on_window_knock'},
     ]
   },
 
   room: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/room.png",
+    sound: "sounds/def.mp3",
     text: "Ты в комнате. Всё тихо.",
     choices: [
       {text: 'Выйти в коридор', next: 'hallway'},
@@ -326,8 +329,8 @@ const scenes = {
   },
 
   room_neighbors_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/room.png",
+    sound: "sounds/neighbors_knock.mp3",
     text: "Ты в комнате. Из прихожей слышен стук соседа.",
     choices: [
       {text: 'Выйти в коридор', next: 'hallway_neighbors_knock'}
@@ -335,8 +338,8 @@ const scenes = {
   },
 
   room_from_sleep_neighbors_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/room.png",
+    sound: "sounds/neighbors_knock.mp3",
     text: "Ты резко проснулся от стука соседа из прихожей.",
     choices: [
       {text: 'Выйти в коридор', next: 'hallway_neighbors_knock'}
@@ -344,8 +347,8 @@ const scenes = {
   },
 
   room_window_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/room.png",
+    sound: "sounds/window_knock.mp3",
     text: "Ты в комнате. Слышен отчётливый стук в окно.",
     choices: [
       {text: 'Выйти в коридор', next: 'hallway_window_knock'}
@@ -353,8 +356,8 @@ const scenes = {
   },
 
   room_from_sleep_window_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/room.png",
+    sound: "sounds/window_knock.mp3",
     text: "Ты резко проснулся от стука в окно.",
     choices: [
       {text: 'Выйти в коридор', next: 'hallway_window_knock'}
@@ -362,8 +365,8 @@ const scenes = {
   },
 
   room_from_sleep_scare: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/room.png",
+    sound: "sounds/def.mp3",
     text: "Ты резко проснулся от странных силуэтов за окном.",
     choices: [
       {text: 'Выйти в коридор', next: 'hallway'},
@@ -372,8 +375,8 @@ const scenes = {
   },
 
   fridge_empty: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/fridge_empty.png",
+    sound: "sounds/def.mp3",
     text: "Холодильник пуст. Записка: 'Жаль, что не спрятался от меня в туалете, теперь ты останешься голодным.'",
     choices: [
       {text: 'Закрыть', next: 'kitchen'},
@@ -381,8 +384,8 @@ const scenes = {
   },
 
   fridge: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/fridge.png",
+    sound: "sounds/def.mp3",
     text: "В холодильнике есть еда.",
     choices: [
       {text: 'Закрыть', next: 'kitchen'},
@@ -392,8 +395,8 @@ const scenes = {
   
 
   fridge_neighbors_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/fridge.png",
+    sound: "sounds/neighbors_knock.mp3",
     text: "В холодильнике есть еда. Из прихожей слышен стук соседа.",
     choices: [
       {text: 'Закрыть', next: 'kitchen_neighbors_knock'},
@@ -402,8 +405,8 @@ const scenes = {
 
 
   fridge_window_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/fridge.png",
+    sound: "sounds/window_knock.mp3",
     text: "В холодильнике есть еда. Слышен отчётливый стук в окно.",
     choices: [
       {text: 'Закрыть', next: 'kitchen_window_knock'},
@@ -411,8 +414,8 @@ const scenes = {
   },
 
   kitchen: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/kitchen.png",
+    sound: "sounds/def.mp3",
     text: "Ты на кухне. Всё тихо.",
     choices: [
       {
@@ -429,8 +432,8 @@ const scenes = {
   },
 
   kitchen_neighbors_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/kitchen.png",
+    sound: "sounds/neighbors_knock.mp3",
     text: "Ты на кухне. Из прихожей слышен стук соседа.",
     choices: [
       {text: 'Поискать что-то поесть в холодильнике', next: 'fridge_neighbors_knock'},
@@ -439,8 +442,8 @@ const scenes = {
   },
 
   kitchen_window_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/kitchen.png",
+    sound: "sounds/window_knock.mp3",
     text: "Ты на кухне. Слышен отчётливый стук в окно.",
     choices: [
       {text: 'Поискать что-то поесть в холодильнике', next: 'fridge_window_knock'},
@@ -449,8 +452,8 @@ const scenes = {
   },
 
   vestibule: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/vestibule.png",
+    sound: "sounds/def.mp3",
     text: "Ты в прихожей. Всё тихо.",
     choices: [
       {text: 'Выйти в коридор', next: 'hallway'},
@@ -463,8 +466,8 @@ const scenes = {
   },
 
   vestibule_neighbors_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/vestibule.png",
+    sound: "sounds/neighbors_knock.mp3",
     text: "Ты в прихожей. Стучится сосед.",
     choices: [
       {text: 'Выйти в коридор', next: 'hallway_neighbors_knock'},
@@ -477,8 +480,8 @@ const scenes = {
   },
 
   vestibule_window_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/vestibule.png",
+    sound: "sounds/window_knock.mp3",
     text: "Ты в прихожей. Слышен отчётливый стук в окно.",
     choices: [
       {text: 'Выйти в коридор', next: 'hallway_window_knock'},
@@ -491,8 +494,8 @@ const scenes = {
   },
 
   toilet_off: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/toilet_off.png",
+    sound: "sounds/def.mp3",
     text: "Ты в туалете. Всё тихо. Свет выключен.",
     choices: [
       {text: 'Выйти в коридор', next: 'hallway'}
@@ -500,8 +503,8 @@ const scenes = {
   },
 
   toilet_on: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/toilet_on.png",
+    sound: "sounds/def.mp3",
     text: "Ты в туалете. Всё тихо. Свет включен.",
     choices: [
       {text: 'Выйти в коридор', next: 'hallway'}
@@ -509,8 +512,8 @@ const scenes = {
   },
 
   toilet_off_neighbors_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/toilet_off.png",
+    sound: "sounds/neighbors_knock.mp3",
     text: "Ты в туалете. Из прихожей слышен стук соседа. Свет выключен.",
     choices: [
       {text: 'Выйти в коридор', next: 'hallway_neighbors_knock'}
@@ -518,8 +521,8 @@ const scenes = {
   },
 
   toilet_on_neighbors_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/toilet_on.png",
+    sound: "sounds/neighbors_knock.mp3",
     text: "Ты в туалете. Из прихожей слышен стук соседа. Свет включен.",
     choices: [
       {text: 'Выйти в коридор', next: 'hallway_neighbors_knock'}
@@ -527,8 +530,8 @@ const scenes = {
   },
 
   toilet_on_window_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/toilet_on.png",
+    sound: "sounds/window_knock.mp3",
     text: "Ты в туалете. Слышен отчётливый стук в окно. Свет включен.",
     choices: [
       {text: 'Выйти в коридор', next: 'hallway_window_knock'}
@@ -536,8 +539,8 @@ const scenes = {
   },
 
   toilet_off_window_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/toilet_off.png",
+    sound: "sounds/window_knock.mp3",
     text: "Ты в туалете. Слышен отчётливый стук в окно. Свет выключен.",
     choices: [
       {text: 'Выйти в коридор', next: 'hallway_window_knock'}
@@ -545,8 +548,8 @@ const scenes = {
   },
 
   peephole: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/peephole.png",
+    sound: "sounds/def.mp3",
     text: "Ты смотришь в глазок. Никого не видно.",
     choices: [
       {text: 'Отойти от глазка', next: 'vestibule'}
@@ -554,8 +557,8 @@ const scenes = {
   },
 
   peephole_window_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/peephole.png",
+    sound: "sounds/window_knock.mp3",
     text: "Ты смотришь в глазок. Никого не видно. Слышен отчётливый стук в окно.",
     choices: [
       {text: 'Отойти от глазка', next: 'vestibule_window_knock'}
@@ -563,8 +566,8 @@ const scenes = {
   },
 
   peephole_neighbors_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/peephole_neighbors_knock.png",
+    sound: "sounds/neighbors_knock.mp3",
     text: "Ты смотришь в глазок. Сосед просит соли.",
     choices: [
       {text: 'Отойти от глазка', next: 'vestibule_neighbors_knock'}
@@ -572,8 +575,8 @@ const scenes = {
   },
 
   stairwell: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/stairwell.png",
+    sound: "sounds/def.mp3",
     text: "Ты на лестничной клетке.",
     choices: [
       {text: 'Войти в квартиру', next: 'vestibule'}
@@ -584,8 +587,8 @@ const scenes = {
   },
 
   stairwell_window_knock: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/stairwell.png",
+    sound: "sounds/window_knock.mp3",
     text: "Ты на лестничной клетке. Слышен отчётливый стук в окно.",
     choices: [
       {text: 'Войти в квартиру', next: 'vestibule_window_knock'}
@@ -596,8 +599,8 @@ const scenes = {
   },
 
   sleep: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/toilet_off.png",
+    sound: "sounds/sleep.mp3",
     text: "Ты cпишь.",
     choices: [
       {text: 'Проснуться', next: 'room'}
@@ -623,8 +626,8 @@ const scenes = {
   },
 
   game_over_axe: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/game_over_axe.png",
+    sound: "sounds/game_over_axe.mp3",
     text: "На твою голову упал топор - подарок от ночного соседа. Game over.",
     choices: [
       {text: 'Начать сначала', next: 'start'}
@@ -632,8 +635,8 @@ const scenes = {
   },
 
   game_over_strangulation: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/game_over_strangulation.png",
+    sound: "sounds/game_over_strangulation.mp3",
     text: "Сосед удушил тебя. Не стоило ему открывать дверь. Game over.",
     choices: [
       {text: 'Начать сначала', next: 'start'}
@@ -641,8 +644,8 @@ const scenes = {
   },
 
   game_over_roof: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/game_over_roof.png",
+    sound: "sounds/game_over_roof.mp3",
     text: "На тебя обрушился потолок. Ты забыл о правиле про шкаф-стенку. Game over.",
     choices: [
       {text: 'Начать сначала', next: 'start'}
@@ -650,16 +653,16 @@ const scenes = {
   },
 
   scare_scene: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/scare_scene.png",
+    sound: "sounds/scare_scene.mp3",
     text: "Ночка перестаёт быть томной",
     choices: [
     ]
   },
 
   happy_end: {
-    background: "images/village.png",
-    sound: "sounds/sound.mp3",
+    background: "images/start.png",
+    sound: "sounds/start.mp3",
     text: "Поздравляю! Ты смог продержаться сутки в бабушкиной двушке. Подписывайтесь на канал, 100 подписчиков - и мы выпустим локации 'лифт', 'подъезд', 'смена в макдоналдсе'",
     choices: [
       {text: 'Начать заново', next: 'start'}
@@ -671,6 +674,8 @@ const scenes = {
   
   
 };
+
+
 
 
 function changeHealth(amount) {
@@ -736,8 +741,10 @@ function loadScene(name) {
     const audio = document.getElementById("bgm");
     if (scene.sound) {
       audio.src = scene.sound;
+      audio.loop = true;
       audio.play().catch(() => {});
     }
+
 
     // onEnter (доп. эффект при входе)
     if (scene.onEnter) scene.onEnter();
@@ -974,10 +981,10 @@ function maybeTriggerPantry() {
     const time = gameState.hour * 60 + gameState.minute;
 
     if (gameState.pantryEventMinute === null && game_over === 0) {
-      gameState.pantryEventMinute = 19 * 60 + (30 + Math.floor(Math.random() * 100));
+      gameState.pantryEventMinute = 20 * 60 + (30 + Math.floor(Math.random() * 40));
     }
 
-    if (time >= gameState.pantryEventMinute && time <= 19 * 60 + 30 + 110) {
+    if (time >= gameState.pantryEventMinute && time <= 20 * 60 + 30 + 50) {
       gameState.pantry = 1;
       gameState.was_pantry = 1;
       if (currentScenename === 'living_room') {

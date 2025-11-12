@@ -34,7 +34,9 @@ const scenes = {
             gameState = JSON.parse(JSON.stringify(gameState_init));
             updateClock();
             gameState.start_pantry = 20 * 60 + Math.floor(Math.random() * 30);
+            console.log('gameState.start_pantry', gameState.start_pantry)
             gameState.start_friend = (21 * 60 + 10) + Math.floor(Math.random() * 50);
+            console.log('gameState.start_friend', gameState.start_friend)
         },
         background: function() {
             return "images/start.png";
@@ -298,6 +300,7 @@ const scenes = {
         name: 'cupboard',
         initActions: function() {
             gameState.examinate_cupboard = 1;
+            console.log('gameState.examinate_cupboard = 1');
         },
         background: function() {
             return "images/cupboard_empty.png";
@@ -374,6 +377,7 @@ const scenes = {
         name: 'vestibule',
         initActions: function() {
             gameState.in_flat = 1;
+            console.log('gameState.in_flat = 1');
         },
         background: function() {
             return "images/vestibule.png";
@@ -576,6 +580,7 @@ const scenes = {
                 actions: function() {
                     if (gameState.active_friend == 1){
                         gameState.enter_friend = 1;
+                        console.log('gameState.enter_friend = 1');
                     }
                     else {
                         
@@ -760,7 +765,7 @@ function updateClock() {
     const d = String(Math.trunc(gameState.abs_minutes / (24 * 60)) + 1).padStart(1, "0");
     document.getElementById("time").textContent = `День ${d}. ${h}:${m}`;
     // console.log(d, h, m)
-    return [d, h, m]
+    return [Math.trunc(gameState.abs_minutes / (24 * 60)) + 1, Math.trunc((gameState.abs_minutes % (24 * 60)) / 60), (gameState.abs_minutes % (24 * 60)) % 60]
 }
 
 
@@ -768,8 +773,10 @@ function triggerManager() {
     gameState.abs_minutes += 1;
 
     const [d, h, m] = updateClock();
+    console.log(d, h, m);
 
     if (inTimeSegment(d, h, m, 1, 20, 0, 21, 0)) {
+        console.log("triggerPantry");
         triggerPantry();
     }
 
@@ -784,9 +791,12 @@ function triggerPantry() {
     if (gameState.completed_pantry == 1) {
         return;
     }
-    if (gameState.currentScene.name == 'scare_scene' && gameState.abs_minutes >= 20 * 60 + 59) {
-        gameState.completed_pantry = 1;
-        loadScene(gameState.old_scene_name);
+    if (gameState.currentScene.name == 'scare_scene') {
+        if (gameState.abs_minutes >= 20 * 60 + 59) {
+            gameState.completed_pantry = 1;
+            loadScene(gameState.old_scene_name);
+        }
+    
     }
     else if (gameState.active_pantry == 0) {
         if (gameState.start_pantry <= gameState.abs_minutes) {
@@ -803,6 +813,7 @@ function triggerPantry() {
             }
             else {
                 gameState.old_scene_name = gameState.currentScene.name;
+                console.log('scare_scene');
                 loadScene("scare_scene");
             }
         }
@@ -828,7 +839,7 @@ function triggerFriend() {
         loadScene("bite_scene");
     }
     else if (gameState.active_friend == 0) {
-        if (gameState.start_pantry <= gameState.abs_minutes) {
+        if (gameState.start_friend <= gameState.abs_minutes) {
             gameState.active_friend = 1;
             loadScene(gameState.currentScene.name);
         }
@@ -849,6 +860,7 @@ window.onload = () => {
       const moveY = (e.clientY / window.innerHeight - 0.5) * 10;
       bg.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
     });
+    gameState = JSON.parse(JSON.stringify(gameState_init));
     loadScene("start");
   };
 

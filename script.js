@@ -4,6 +4,8 @@ const gameState_init = {
     abs_minutes: 19 * 60,
     currentScene: null,
     old_scene_name: null,
+    game_over: 0,
+    game_over_reason: 0,
 
     active_pantry: 0,
     start_pantry: 0,
@@ -14,6 +16,21 @@ const gameState_init = {
     completed_friend: 0,
     enter_friend: 0,
     start_bit: 0,
+
+    active_neighbour: 0,
+    start_neighbour: 0,
+    completed_neighbour: 0,
+    future_death_from_neighbour: 0,
+
+    active_killer: 0,
+    start_killer: 0,
+    first_killer_clap: 0,
+    first_reload: 0,
+    second_killer_clap: 0,
+    second_reload: 0,
+    completed_killer: 0,
+    player_hidden: 0,
+
 
     emp_fr: 0,
     type_capboard: 0,
@@ -34,9 +51,16 @@ const scenes = {
             gameState = JSON.parse(JSON.stringify(gameState_init));
             updateClock();
             gameState.start_pantry = 20 * 60 + Math.floor(Math.random() * 30);
-            console.log('gameState.start_pantry', gameState.start_pantry)
+            console.log('gameState.start_pantry', gameState.start_pantry);
             gameState.start_friend = (21 * 60 + 10) + Math.floor(Math.random() * 50);
-            console.log('gameState.start_friend', gameState.start_friend)
+            console.log('gameState.start_friend', gameState.start_friend);
+            gameState.start_neighbour = (23 * 60) + Math.floor(Math.random() * 30);
+            console.log('gameState.start_neighbour', gameState.start_neighbour);
+            gameState.start_killer = (23 * 60 + 45) + Math.floor(Math.random() * 14);
+            gameState.first_killer_clap = 24 * 60 + 10 + Math.floor(Math.random() * 40);
+            gameState.second_killer_clap = 24 * 60 + 45 + Math.floor(Math.random() * 30);
+            console.log('gameState.start_killer, first, second', gameState.start_killer, gameState.first_killer_clap, gameState.second_killer_clap);
+
         },
         background: function() {
             return "images/start.png";
@@ -79,7 +103,10 @@ const scenes = {
             
         },
         text: function() {
-            if (gameState.active_pantry == 1) {
+            if (gameState.active_friend == 1) {
+                return "Ты в коридоре. Слышен слабый стук в дверь.";
+            }
+            else if (gameState.active_pantry == 1) {
                 return "Ты в коридоре. Слышен скрип двери кладовки.";
             }
             else {
@@ -537,10 +564,13 @@ const scenes = {
             return "sounds/def.mp3";
         },
         text: function() {
-            if (gameState.active_friend == 1) {
+            if (gameState.active_neighbour == 1) {
+                return "Ты смотришь в глазок. Сосед просит соли.";
+            }
+            else if (gameState.active_friend == 1) {
                 return "Ты смотришь в глазок. Стоит девушка. Хочет войти.";
             }
-            if (gameState.active_pantry == 1) {
+            else if (gameState.active_pantry == 1) {
                 return "Ты смотришь в глазок. Никого не видно. Слышен скрип двери кладовки.";
             }
             else {
@@ -561,7 +591,10 @@ const scenes = {
 
             {
                 text: function() {
-                    if (gameState.active_friend == 1){
+                    if (gameState.active_neighbour == 1){
+                        return 'Открыть дверь и дать соли';
+                    }
+                    else if (gameState.active_friend == 1){
                         return 'Впустить девушку';
                     }
                     else {
@@ -570,7 +603,10 @@ const scenes = {
                         
                 },
                 next: function() {
-                    if (gameState.active_friend == 1){
+                    if (gameState.active_neighbour == 1){
+                        return 'game_over';
+                    }
+                    else if (gameState.active_friend == 1){
                         return 'vestibule';
                     }
                     else {
@@ -578,12 +614,12 @@ const scenes = {
                     }
                 },
                 actions: function() {
-                    if (gameState.active_friend == 1){
-                        gameState.enter_friend = 1;
-                        console.log('gameState.enter_friend = 1');
+                    if (gameState.active_neighbour == 1) {
+                        gameState.game_over = 1;
+                        gameState.game_over_reason = 'strangulation';
                     }
-                    else {
-                        
+                    else if (gameState.active_friend == 1) {
+                        gameState.enter_friend = 1;
                     }
                 }
             },
@@ -770,6 +806,9 @@ function updateClock() {
 
 
 function triggerManager() {
+    if (gameState.game_over == 1) {
+        return;
+    }
     gameState.abs_minutes += 1;
 
     const [d, h, m] = updateClock();
@@ -782,6 +821,14 @@ function triggerManager() {
 
     if (inTimeSegment(d, h, m, 1, 21, 0, 23, 0)) {
         triggerFriend();
+    }
+
+    if (inTimeSegment(d, h, m, 1, 23, 0, 23, 45)) {
+        triggerNeighbour();
+    }
+
+    if (inTimeSegment(d, h, m, 1, 23, 45, 23, 59) || inTimeSegment(d, h, m, 2, 0, -1, 1, 30)) {
+        triggerKiller();
     }
 
 }
@@ -849,6 +896,68 @@ function triggerFriend() {
             gameState.active_friend = 0;
             gameState.completed_friend = 1;
             loadScene(gameState.currentScene.name);
+        }
+    }
+}
+
+function triggerNeighbour() {
+    if (gameState.completed_neighbour == 1) {
+        return;
+    }
+    if (gameState.active_neighbour == 0) {
+        if (gameState.start_neighbour <= gameState.abs_minutes) {
+            gameState.active_neighbour = 1;
+            loadScene(gameState.currentScene.name);
+        }
+    }
+    else {
+        if (gameState.abs_minutes >= (23 * 60 + 41)) {
+            gameState.active_neighbour = 0;
+            if (gameState.currentScene.name == 'peephole') {
+                gameState.completed_neighbour = 1;
+                
+            }
+            else {
+                gameState.future_death_from_neighbour = 1;
+                gameState.completed_neighbour = 1;
+            }
+            loadScene(gameState.currentScene.name);
+        }
+    }
+}
+
+function triggerKiller() {
+    if (gameState.completed_killer == 1) {
+        return;
+    }
+    if (gameState.active_killer == 0) {
+        if (gameState.start_killer <= gameState.abs_minutes) {
+            gameState.active_killer = 1;
+            loadScene(gameState.currentScene.name);
+        }
+    }
+    else {
+        if (gameState.abs_minutes > 24 * 60 + 5) {
+            if (gameState.player_hidden == 0) {
+                gameState.game_over = 1;
+                gameState.game_over_reason = 'killer';
+                loadScene('game_over');
+                return;
+            }
+        }
+        if (gameState.abs_minutes > gameState.first_killer_clap && gameState.first_reload == 0) {
+            gameState.first_reload = 1;
+            loadScene(gameState.currentScene.name);
+        }
+        if (gameState.abs_minutes > gameState.second_killer_clap && gameState.second_reload == 0) {
+            gameState.second_reload = 1;
+            loadScene(gameState.currentScene.name);
+        }
+        if (gameState.abs_minutes > gameState.second_killer_clap + 3) {
+            gameState.completed_killer = 1;
+            gameState.active_killer = 0;
+            loadScene(gameState.currentScene.name);
+            return;
         }
     }
 }

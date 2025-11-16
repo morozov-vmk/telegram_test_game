@@ -1378,7 +1378,17 @@ const scenes = {
         choices: [
             {
                 show: function () {
-                    return true;
+                    if (gameState.player_hidden) {
+                        return false;
+                    }
+                    else {
+                        if (gameState.player_safety_from_grandmother) {
+                            return false;
+                        }
+                        else {
+                            return true;
+                        }
+                    }
                 },
                 text: function () {
                     return 'Выйти в коридор';
@@ -1392,7 +1402,12 @@ const scenes = {
 
             {
                 show: function () {
-                    return true;
+                    if (gameState.player_hidden) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
                 },
                 text: function () {
                     if (gameState.bath_empty) {
@@ -1418,7 +1433,12 @@ const scenes = {
 
             {
                 show: function () {
-                    return true;
+                    if (gameState.player_safety_from_grandmother) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
                 },
                 text: function () {
                     if (!gameState.player_hidden) {
@@ -1444,7 +1464,12 @@ const scenes = {
             
             {
                 show: function () {
-                    return true;
+                    if (gameState.player_hidden) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
                 },
                 text: function () {
                     if (!gameState.player_safety_from_grandmother) {
@@ -1472,7 +1497,17 @@ const scenes = {
 
             {
                 show: function () {
-                    return true;
+                    if (gameState.player_hidden) {
+                        return false;
+                    }
+                    else {
+                        if (gameState.player_safety_from_grandmother) {
+                            return false;
+                        }
+                        else {
+                            return true;
+                        }
+                    }
                 },
                 text: function () {
                     return 'Обработать стены уксусом';

@@ -178,7 +178,18 @@ const scenes = {
                 }
             }
             if (gameState.active_grandmother) {
-                ans = ans + 'Из гостиной слышно тяжёлое дыхание.'
+                ans = ans + 'Из гостиной слышно тяжёлое дыхание. '
+            }
+            if (gameState.active_killer) {
+                if (!gameState.first_reload) {
+                    ans = ans + 'Слышны странные шаги в квартире. '
+                }
+                else if (gameState.first_reload && !gameState.second_reload) {
+                    ans = ans + 'Шаги прекратились. Дверь закрылась. '
+                }
+                else if (gameState.completed_killer) {
+                    ans = ans + 'Дверь ещё раз закрылась .'
+                }
             }
             return ans;
         },
@@ -360,6 +371,17 @@ const scenes = {
                 gameState.sleeping = false;
                 ans = 'Ты проснулся. ' + ans
             }
+            if (gameState.active_killer) {
+                if (!gameState.first_reload) {
+                    ans = ans + 'Слышны странные шаги в квартире. '
+                }
+                else if (gameState.first_reload && !gameState.second_reload) {
+                    ans = ans + 'Шаги прекратились. Дверь закрылась. '
+                }
+                else if (gameState.completed_killer) {
+                    ans = ans + 'Дверь ещё раз закрылась .'
+                }
+            }
             return ans;
         },
         choices: [
@@ -506,6 +528,17 @@ const scenes = {
             if (gameState.active_grandmother) {
                 ans = ans + 'Из гостиной слышно тяжёлое дыхание.'
             }
+            if (gameState.active_killer) {
+                if (!gameState.first_reload) {
+                    ans = ans + 'Слышны странные шаги в квартире. '
+                }
+                else if (gameState.first_reload && !gameState.second_reload) {
+                    ans = ans + 'Шаги прекратились. Дверь закрылась. '
+                }
+                else if (gameState.completed_killer) {
+                    ans = ans + 'Дверь ещё раз закрылась .'
+                }
+            }
             return ans;
         },
 
@@ -595,6 +628,17 @@ const scenes = {
             }
             if (gameState.active_grandmother) {
                 ans = ans + 'Бабушка стоит в углу спиной и тяжело дышит.'
+            }
+            if (gameState.active_killer) {
+                if (!gameState.first_reload) {
+                    ans = ans + 'Слышны странные шаги в квартире. '
+                }
+                else if (gameState.first_reload && !gameState.second_reload) {
+                    ans = ans + 'Шаги прекратились. Дверь закрылась. '
+                }
+                else if (gameState.completed_killer) {
+                    ans = ans + 'Дверь ещё раз закрылась .'
+                }
             }
             return ans;
         },
@@ -798,6 +842,17 @@ const scenes = {
             if (gameState.active_grandmother) {
                 ans = ans + 'Слышно тяжёлое дыхание.'
             }
+            if (gameState.active_killer) {
+                if (!gameState.first_reload) {
+                    ans = ans + 'Слышны странные шаги в квартире. '
+                }
+                else if (gameState.first_reload && !gameState.second_reload) {
+                    ans = ans + 'Шаги прекратились. Дверь закрылась. '
+                }
+                else if (gameState.completed_killer) {
+                    ans = ans + 'Дверь ещё раз закрылась .'
+                }
+            }
             return ans;
         },
         choices: [
@@ -866,6 +921,17 @@ const scenes = {
             }
             if (gameState.active_grandmother) {
                 ans = ans + 'Слышно тяжёлое дыхание.'
+            }
+            if (gameState.active_killer) {
+                if (!gameState.first_reload) {
+                    ans = ans + 'Слышны странные шаги в квартире. '
+                }
+                else if (gameState.first_reload && !gameState.second_reload) {
+                    ans = ans + 'Шаги прекратились. Дверь закрылась. '
+                }
+                else if (gameState.completed_killer) {
+                    ans = ans + 'Дверь ещё раз закрылась .'
+                }
             }
             return ans;
         },
@@ -991,6 +1057,17 @@ const scenes = {
             if (gameState.active_grandmother) {
                 ans = ans + 'Из гостиной слышно тяжёлое дыхание.'
             }
+            if (gameState.active_killer) {
+                if (!gameState.first_reload) {
+                    ans = ans + 'Слышны странные шаги в квартире. '
+                }
+                else if (gameState.first_reload && !gameState.second_reload) {
+                    ans = ans + 'Шаги прекратились. Дверь закрылась. '
+                }
+                else if (gameState.completed_killer) {
+                    ans = ans + 'Дверь ещё раз закрылась .'
+                }
+            }
             return ans;
         },
         choices: [
@@ -1109,6 +1186,17 @@ const scenes = {
             if (gameState.active_grandmother) {
                 ans = ans + 'Из гостиной слышно тяжёлое дыхание.'
             }
+            if (gameState.active_killer) {
+                if (!gameState.first_reload) {
+                    ans = ans + 'Слышны странные шаги в квартире. '
+                }
+                else if (gameState.first_reload && !gameState.second_reload) {
+                    ans = ans + 'Шаги прекратились. Дверь закрылась. '
+                }
+                else if (gameState.completed_killer) {
+                    ans = ans + 'Дверь ещё раз закрылась .'
+                }
+            }
             return ans;
         },
         choices: [
@@ -1183,6 +1271,17 @@ const scenes = {
             }
             if (gameState.active_grandmother) {
                 ans = ans + 'Из гостиной слышно тяжёлое дыхание.'
+            }
+            if (gameState.active_killer) {
+                if (!gameState.first_reload) {
+                    ans = ans + 'Слышны странные шаги в квартире. '
+                }
+                else if (gameState.first_reload && !gameState.second_reload) {
+                    ans = ans + 'Шаги прекратились. Дверь закрылась. '
+                }
+                else if (gameState.completed_killer) {
+                    ans = ans + 'Дверь ещё раз закрылась .'
+                }
             }
             return ans;
         },
@@ -1262,6 +1361,17 @@ const scenes = {
             }
             if (gameState.active_grandmother) {
                 ans = ans + 'Из гостиной слышно тяжёлое дыхание.'
+            }
+            if (gameState.active_killer) {
+                if (!gameState.first_reload) {
+                    ans = ans + 'Слышны странные шаги в квартире. '
+                }
+                else if (gameState.first_reload && !gameState.second_reload) {
+                    ans = ans + 'Шаги прекратились. Дверь закрылась. '
+                }
+                else if (gameState.completed_killer) {
+                    ans = ans + 'Дверь ещё раз закрылась .'
+                }
             }
             return ans;
         },
@@ -1413,6 +1523,17 @@ const scenes = {
             if (gameState.active_grandmother) {
                 ans = ans + 'Из гостиной слышно тяжёлое дыхание.'
             }
+            if (gameState.active_killer) {
+                if (!gameState.first_reload) {
+                    ans = ans + 'Слышны странные шаги в квартире. '
+                }
+                else if (gameState.first_reload && !gameState.second_reload) {
+                    ans = ans + 'Шаги прекратились. Дверь закрылась. '
+                }
+                else if (gameState.completed_killer) {
+                    ans = ans + 'Дверь ещё раз закрылась .'
+                }
+            }
             return ans;
         },
         choices: [
@@ -1495,6 +1616,17 @@ const scenes = {
             }
             if (gameState.active_grandmother) {
                 ans = ans + 'Из гостиной слышно тяжёлое дыхание.'
+            }
+            if (gameState.active_killer) {
+                if (!gameState.first_reload) {
+                    ans = ans + 'Слышны странные шаги в квартире. '
+                }
+                else if (gameState.first_reload && !gameState.second_reload) {
+                    ans = ans + 'Шаги прекратились. Дверь закрылась. '
+                }
+                else if (gameState.completed_killer) {
+                    ans = ans + 'Дверь ещё раз закрылась .'
+                }
             }
             return ans;
         },
@@ -1598,6 +1730,17 @@ const scenes = {
             }
             if (gameState.active_grandmother) {
                 ans = ans + 'Из гостиной слышно тяжёлое дыхание.'
+            }
+            if (gameState.active_killer) {
+                if (!gameState.first_reload) {
+                    ans = ans + 'Слышны странные шаги в квартире. '
+                }
+                else if (gameState.first_reload && !gameState.second_reload) {
+                    ans = ans + 'Шаги прекратились. Дверь закрылась. '
+                }
+                else if (gameState.completed_killer) {
+                    ans = ans + 'Дверь ещё раз закрылась .'
+                }
             }
             return ans;
         },

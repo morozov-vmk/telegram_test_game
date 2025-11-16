@@ -2367,4 +2367,3 @@ window.onload = () => {
     gameState = JSON.parse(JSON.stringify(gameState_init));
     loadScene("start");
 };
-
